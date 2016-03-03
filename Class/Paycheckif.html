@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<title>Paycheck</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+	<script>
+		var hrsWrkd=50;//hours worked in hours
+		var payRate=10;//Pay rate in $'s/hr
+		var overtime=40;//Hour at which double time occurs
+		var payChk;
+		
+		//Calculate the Paycheck
+		if(hrsWrkd<overtime)payChk=hrsWrkd*payRate;
+		if(hrsWrkd>=overtime)payChk=overtime*payRate+2*payRate*(HrsWrkd-overtime);
+		
+		//output the inputs and the calculations
+		var str = "<h1>Hours Worked = "+ hrsWrkd+"</h1>";
+		str+=	"<h1>Pay Rate = $"+payRate+"'s/hr</h1>";
+		str+= "<h1>Overtiem starts at "+overtime+" hrs</h1>";
+		str+= "<h1>Pay Check = $"+payChk+"</h1>";
+		document.write(str);
+	</script>
+</body>
+</html>
