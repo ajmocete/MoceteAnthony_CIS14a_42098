@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Grader</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<h1>working?</h1>
+	<script>
+	var tstScr;//Test Score
+	var grade;
+		
+		tstScr = prompt("What is the students grade?");
+		//Calculate the Paycheck
+		grade=(tstScr>=90)?"A":
+		      (tstScr>=80)?"b":
+		      (tstScr>=70)?"c":
+		      (tstScr>=60)?"d":"F";
+				
+		
+		//output the inputs and the calculations
+		var str = "<h1>Test Score = "+ tstScr+"</h1>";
+		str+= "<h1>Grade = "+ grade+"</h1>";
+		document.write(str);
+	</script>
+</body>
+</html>

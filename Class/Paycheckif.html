@@ -13,7 +13,7 @@
 		
 		//Calculate the Paycheck
 		if(hrsWrkd<overtime)payChk=hrsWrkd*payRate;
-		if(hrsWrkd>=overtime)payChk=overtime*payRate+2*payRate*(HrsWrkd-overtime);
+		if(hrsWrkd>=overtime)payChk=overtime*payRate+2*payRate*(hrsWrkd-overtime);
 		
 		//output the inputs and the calculations
 		var str = "<h1>Hours Worked = "+ hrsWrkd+"</h1>";

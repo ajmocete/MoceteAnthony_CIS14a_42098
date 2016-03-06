@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 	<title>Paycheck</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -7,14 +7,17 @@
 <body>
 <h1>working?</h1>
 	<script>
-		var hrsWrkd=50;//hours worked in hours
+		var hrsWrkd;//hours worked in hours
 		var payRate=10;//Pay rate in $'s/hr
 		var overtime=40;//Hour at which double time occurs
 		var payChk;
 		
+		hrsWrkd = prompt("How many hours has the employee worked?");
 		//Calculate the Paycheck
-		if(hrsWrkd<overtime)payChk=hrsWrkd*payRate;
-		else(hrsWrkd>=overtime)payChk=overtime*payRate+2*payRate*(hrsWrkd-overtime);
+		payChk=(hrsWrkd<overtime)?
+				hrsWrkd*payRate:
+				overtime*payRate+2*payRate*(hrsWrkd-overtime);
+				
 		
 		//output the inputs and the calculations
 		var str = "<h1>Hours Worked = "+ hrsWrkd+"</h1>";
