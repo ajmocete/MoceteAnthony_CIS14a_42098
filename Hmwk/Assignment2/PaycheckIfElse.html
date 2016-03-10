@@ -16,10 +16,16 @@
 		hrsWrkd = prompt("How many hours has the employee worked?");
 		payRate = prompt("What is the current payrate?");
 		//Calculate the Paycheck
-		payChk=(hrsWrkd<=doubleTime)?hrsWrkd*payRate:
-		       (hrsWrkd<=tripleTime)?doubleTime*payRate+2*payRate*(hrsWrkd-doubleTime):
-					     doubleTime*payRate+2*payRate*(hrsWrkd-doubleTime)+payRate*(hrsWrkd-tripleTime);
 
+		if(hrsWrkd<=doubleTime){ //if hours worked are less than whats required for double time
+			payChk = hrsWrkd*payRate;
+		}
+		else if(hrsWrkd<=tripleTime){ //if hours worked are less than whats required for triple
+			payChk = doubleTime*payRate+2*payRate*(hrsWrkd-doubleTime);
+		}
+		else { //if hours worked exceeds whats required for triple time
+			payChk = doubleTime*payRate+2*payRate*(hrsWrkd-doubleTime)+payRate*(hrsWrkd-tripleTime);
+		};
 
 
 				
