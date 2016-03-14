@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>scoops</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<script>
+	var scoops = 10;
+	while (scoops > 0) {
+		if(scoops == 10){
+			document.write("FIRST SCOOP!!!<br>");
+		}
+		else {
+			document.write("Another scoop!<br>");
+		};
+		scoops = scoops - 1;
+	};
+	document.write("Life without ice cream isn't the same");
+</script>
+</body>
+</html>
