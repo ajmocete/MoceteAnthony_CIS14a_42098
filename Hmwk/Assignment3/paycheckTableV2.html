@@ -10,14 +10,14 @@
 	<script>
 		//Mocete, Anthony - Assignment 3 - 42098
 		//PayCheckTable
-
+		
 
 
 		//Declare Variables
 		var hrLimit=80;//Hours per week limit
 		var payCount = prompt("How many different payrates do you want to calculate?");//prompts the user for the amount of payrates they want to calculate
 		var payRate = [];//An array to hold the different payrates that the user wants to calculate
-		var ovrtime=prompt("Please give the hour at which overtime begins");//prompts user for the Hour at which double time occurs
+		
 		var payChk = [];
 		
 		//function that multiplies the pay by hours; includes the ability to calculate overtime after a given hour
@@ -27,15 +27,19 @@
 				overtime*rate+2*rate*(hrs-overtime);
 			return pay;
 		}
-
+		
 		//Input the payRates to be calculated
 		for(i=0;i < payCount;i++)
 		{
 			payRate.push(prompt("Please enter each payRate you wish to calculate; One at a time!"));
 		}
+		
+		var ovrtime=prompt("Please give the hour at which overtime begins");//prompts user for the Hour at which double time occurs		
+		
+
 		//Output the inputs
 		var str=   "<h1>Pay Rate Calculator</h1>";
-		    str+= "<h1>Compare two PayRates</h1>";
+		    str+= "<h1>Comparing "+ payCount+ " PayRates</h1>";
 		    str+=   "<h1>Overtime starts at "+ovrtime+" hrs</h1>";
 		document.write(str);
 		
