@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="CSE HTML Validator (https://www.htmlvalidator.com/)">
+</head>
+
+<body>
+	<script>
+		//Mocete, Anthony - Assignment 3 - 42098
+		//PayCheck Table
+
+
+
+		//Declare Variables
+		var hrLimit=80;//Hours per week limit
+		var payRate1=prompt("Please give a payrate value in $'s/hr")//Prompts user for Pay rate in $'s/hr
+		var payRate2=prompt("Please give a second payrate value in $'s/hr");//Prompts user for Second pay rate in $'s/hr
+		var ovrtime=prompt("Please give the hour at which overtime begins");//prompts user for the Hour at which double time occurs
+		var payChk = [];
+		
+		//function that multiplies the pay by hours; includes the ability to calculate overtime after a given hour
+		function payCalculate(hrs, rate, overtime)
+		{
+			var pay=(hrs<overtime)?hrs*rate:
+				overtime*rate+2*rate*(hrs-overtime);
+			return pay;
+		}
+		//Output the inputs
+		var str=   "<h1>Pay Rate Calculator</h1>";
+		    str+= "<h1>Compare two PayRates</h1>";
+		    str+=   "<h1>Overtime starts at "+ovrtime+" hrs</h1>";
+		document.write(str);
+		
+		//Table Heading
+		str='<table border="1" style="width:auto">';
+		str+="<tr><th>Hours</th><th>($"+payRate1+"/hr)</th><th>($"+payRate2+"/hr)</th></tr>";
+		//Loop over all the hours that could be worked
+		var hrsWrkd=0;
+		while(hrsWrkd<=hrLimit){
+			
+			//Calculate the paycheck
+			payChk1=payCalculate(hrsWrkd, payRate1, ovrtime);
+			payChk2=payCalculate(hrsWrkd, payRate2, ovrtime);
+
+                	//Add the hours worked and the paycheck to the table string
+              		str+="<tr>";
+                	str+="<td><center>"+hrsWrkd.toFixed(2)+"</center></td>";
+                	str+="<td><center>"+payChk1.toFixed(2)+"</center></td>";
+			str+="<td><center>"+payChk2.toFixed(2)+"</center></td>";
+               		str+="</tr>";
+                	hrsWrkd+=0.1;
+		}
+		str+="</table>";
+		//Display the string
+		document.write(str);
+	</script>
+</body>
+</html>

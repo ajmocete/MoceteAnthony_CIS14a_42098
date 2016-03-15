@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="CSE HTML Validator (https://www.htmlvalidator.com/)">
+</head>
+
+<body>
+	<script>
+		//Mocete, Anthony - Assignment 3 - 42098
+		//PayCheckTable
+
+
+
+		//Declare Variables
+		var hrLimit=80;//Hours per week limit
+		var payCount = prompt("How many different payrates do you want to calculate?");//prompts the user for the amount of payrates they want to calculate
+		var payRate = [];//An array to hold the different payrates that the user wants to calculate
+		var ovrtime=prompt("Please give the hour at which overtime begins");//prompts user for the Hour at which double time occurs
+		var payChk = [];
+		
+		//function that multiplies the pay by hours; includes the ability to calculate overtime after a given hour
+		function payCalculate(hrs, rate, overtime)
+		{
+			var pay=(hrs<overtime)?hrs*rate:
+				overtime*rate+2*rate*(hrs-overtime);
+			return pay;
+		}
+
+		//Input the payRates to be calculated
+		for(i=0;i < payCount;i++)
+		{
+			payRate.push(prompt("Please enter each payRate you wish to calculate; One at a time!"));
+		}
+		//Output the inputs
+		var str=   "<h1>Pay Rate Calculator</h1>";
+		    str+= "<h1>Compare two PayRates</h1>";
+		    str+=   "<h1>Overtime starts at "+ovrtime+" hrs</h1>";
+		document.write(str);
+		
+		//Table Heading
+		str='<table border="1" style="width:auto">';
+		str+="<tr><th>Hours</th>";
+		for(i=0;i < payCount;i++){
+			str+="<th>($"+payRate[i]+"/hr)</th>";
+		}		
+		str+="</tr>";
+		//Loop over all the hours that could be worked
+		var hrsWrkd=0;
+		while(hrsWrkd<=hrLimit){
+			
+			//Calculate the paycheck
+			for(i=0;i < payCount;i++) {
+				payChk.push(payCalculate(hrsWrkd, payRate[i], ovrtime));
+			};
+                	//Add the hours worked and the paycheck to the table string
+              		str+="<tr>";
+                	str+="<td><center>"+hrsWrkd.toFixed(2)+"</center></td>";
+                	for(j=0;j < payCount;j++)
+			{
+				str+="<td><center>"+payChk[j].toFixed(2)+"</center></td>";
+               		};
+			payChk = [];//Reset payChk array
+			str+="</tr>";
+                	hrsWrkd+=0.1;
+		}
+		str+="</table>";
+		//Display the string
+		document.write(str);
+	</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Truth Table</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+	<h1>Truth Table</h1>
+	<table border="1" width="200">
+	  <tbody><tr>
+      	 <th>x</th>
+      	 <th>y</th>
+    	   <th>!x</th>
+    	   <th>!y</th>
+    	  <th>x&amp;&amp;y</th>
+   	    <th>x||y</th>
+    	   <th>x^y</th>
+    	   <th>x^y^x</th>
+   	    <th>x^y^y</th>
+   	    <th>!(x&amp;&amp;y)</th>
+    	   <th>(!x||!y)</th>
+    	   <th>!(x||y)</th>
+     	  <th>(!x&amp;&amp;!y)</th>
+  </tr>
+	<script>
+	//Mocete, Anthony - Assignment 3 - 42098
+	//Truth Table
+	function truthTableRow(x, y){                //function that uses two Boolean values and compares them under different 
+		var str = "<tr>";     		     //logical operators. Adds the result's to a string in a table format. 
+		    str+="<td>"+(x?"T":"F")+"</td>"; //returns a string when called
+		    str+="<td>"+(y?"T":"F")+"</td>";
+		    str+="<td>"+(!x?"T":"F")+"</td>";
+		    str+="<td>"+(!y?"T":"F")+"</td>";
+		    str+="<td>"+(x&&y?"T":"F")+"</td>";
+		    str+="<td>"+(x||y?"T":"F")+"</td>";
+		    str+="<td>"+(x^y?"T":"F")+"</td>";
+                    str+="<td>"+(x^y^x?"T":"F")+"</td>";
+ 		    str+="<td>"+(x^y^y?"T":"F")+"</td>";
+	  	    str+="<td>"+(!(x&&y)?"T":"F")+"</td>";
+                    str+="<td>"+(!x||!y?"T":"F")+"</td>";
+		    str+="<td>"+(!(x||y)?"T":"F")+"</td>";
+		    str+="<td>"+((!x&&!y)?"T":"F")+"</td>";
+		    str+="</tr>";
+		return str;
+	}
+	var x = true;//establishing x variable
+	var y = true;//establishing y variable
+	
+	document.write(truthTableRow(x, y));//prints first row of truth table
+
+	y = false; //change y to false
+	document.write(truthTableRow(x, y));//prints second row of truth table
+	
+	x = false;//change x to false
+	y = true;//change y to true
+	document.write(truthTableRow(x, y));//prints third row of truth table
+	
+	y = false;//change y to false
+	document.write(truthTableRow(x, y));//prints fourth and last row of truth table
+	</script>
+</tbody></table>
+</body>
+</html>
