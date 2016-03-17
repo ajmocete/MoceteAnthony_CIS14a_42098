@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Bubble Report</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<script>
+	var scores = [60,50,60,58,54,54,58,50,52,54,48,69,34,55,51,52,44,51,
+			69,64,66,55,52,61,46,31,57,52,44,18,41,53,55,61,51,44];
+	var output;
+	var highscore = 0;
+	var bestScores = [];
+
+	for(var i = 0; i < scores.length; i++) {
+		output = "Bubble Solution #"+ i + " score: " + scores[i] + "<br>";
+		
+		highscore = (scores[i] > highscore)?scores[i]:highscore;
+		
+		
+		document.write(output);
+	}
+
+	for(i = 0; i < scores.length; i++) {
+		if(scores[i] == highscore) {
+			bestScores.push(i);
+		}
+	}
+	
+	document.write("<br>Bubbles tests: " + (scores.length) + "<br>");
+	document.write("Highest bubble score: " + highscore  + "<br>");
+	document.write("Best bubble Solutions: "+bestScores+"<br>");
+
+</script>
+</body>
+</html>
