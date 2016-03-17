@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="CSE HTML Validator (https://www.htmlvalidator.com/)">
+</head>
+
+<body>
+	<script>
+		//take the URL in the Window
+		var url=window.location.href;
+		//Split the URL and the Important is in the 2nd Half
+		var info=url.split("?");
+		//Place name value pairs into an array
+		var nameValuePairs = info[1].split("&");
+		document.write("<h2>"+url+"</h2>");
+		object = new Object();
+		for(i=0;i<nameValuePairs.length;i++)
+		{
+			var map=nameValuePairs[i].split("=");
+			var name= map[0];
+			var value=map[1];
+				object[name]=value;	
+		
+		}
+		//Output the elements in the object
+		var str="";
+		for(var name in object){
+			str+=("<h2>"+name+"="+object[name]+"</h2>");	
+			
+		}
+		document.write(str);
+	</script>
+</body>
+</html>
