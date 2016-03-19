@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>PaycheckTable</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<script>
+	var url=window.location.href;
+	var payChk;
+	var doubleTime=20;
+	var tripleTime=40;
+	var tax=.10;
+	var maxHours=72;
+
+
+	//function that multiplies the pay by hours; includes the ability to calculate overtime after a given hour
+	function payCalculate(hrs, rate, doubleTime, tripleTime)
+	{
+		 pay=  (hrs<=doubleTime)?hrs*rate:
+		       (hrsW<=tripleTime)?doubleTime*rate+2*rate*(hrs-doubleTime):
+					     doubleTime*rate+2*rate*(hrs-doubleTime)+rate*(hrs-tripleTime);
+		return pay;
+	}
+	
+	
+	//Split the URL and the Important is in the 2nd Half
+	var info=url.split("?");
+	//Place name value pairs into an array
+	var nameValuePairs = info[1].split("&");
+	document.write("<h2>"+url+"</h2>"); 
+	payInfo = new Object();
+	for(var i=0; i<nameValuePairs.length;i++)
+	{
+		var map=nameValuePairs[i].split("=");
+		var id=map[0];
+		var info=map[1];
+		payInfo[id]=info;
+		console.log(nameValuePairs);
+	}
+	document.write(payInfo["hrsWkd"]);
+	var str="";
+	for(var pay in payInfo)
+	{
+	 	str+=("<h2>"+pay+"="+payInfo[pay]+"</h2>");	
+			
+	}
+	document.write(str);
+	
+</script>
+</body>
+</html>
