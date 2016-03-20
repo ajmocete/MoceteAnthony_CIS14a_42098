@@ -8,17 +8,17 @@
 <script>
 	var url=window.location.href;
 	var payChk;
-	var doubleTime=20;
+	var doubleTime=20.00;
 	var tripleTime=40;
 	var tax=.10;
 	var maxHours=72;
-
+	var str="";
 
 	//function that multiplies the pay by hours; includes the ability to calculate overtime after a given hour
 	function payCalculate(hrs, rate, doubleTime, tripleTime)
 	{
 		 pay=  (hrs<=doubleTime)?hrs*rate:
-		       (hrsW<=tripleTime)?doubleTime*rate+2*rate*(hrs-doubleTime):
+		       (hrs<=tripleTime)?doubleTime*rate+2*rate*(hrs-doubleTime):
 					     doubleTime*rate+2*rate*(hrs-doubleTime)+rate*(hrs-tripleTime);
 		return pay;
 	}
@@ -37,14 +37,46 @@
 		var info=map[1];
 		payInfo[id]=info;
 		console.log(nameValuePairs);
+		
 	}
-	document.write(payInfo["hrsWkd"]);
-	var str="";
-	for(var pay in payInfo)
+	
+	//Display Hour information
+	str =  "<h1>Hourly Pay ranging from 0 to 72 hours</h1>";
+	str += "<h2>Double time begins at: "+doubleTime+"</h2>";
+	str += "<h2>Triple time begins at: "+tripleTime+"</h2>";
+	str+="<hr>";
+	
+
+	var hrsWrk = 0;
+	for(var payRate in payInfo){
+		//Table Heading
+		
+		str+="<center>";
+		str+='<table border="1" style="width:auto">';
+		str+="<tr><th>Hours</th><th>PayRate($/hr)</th><th>GrossPay</th><th>Taxes(10%)</th><th>NetPay($)</th></tr>";
+		while(hrsWrk <= maxHours){
+			
+			var GrsPay = payCalculate(hrsWrk, payInfo["payRate"], doubleTime, tripleTime);
+			var netPay = GrsPay -(GrsPay*tax);
+			str+="<tr>";
+			str+="<td><center>"+hrsWrk.toFixed(2)+"</center></td>";
+			str+="<td><center>"+payInfo["payRate"]+"</center></td>";
+			str+="<td><center>"+GrsPay.toFixed(2)+"</center></td>";
+			str+="<td><center>"+tax.toFixed(2)+"</center></td>";
+			str+="<td><center>"+netPay.toFixed(2)+"</center></td>";
+			str+="</tr>";
+			hrsWrk+=0.1;
+		}
+		str+="</table>";
+		str+="</center>";
+		str+="<hr>";
+	}
+	
+	/*for(var pay in payInfo)
 	{
 	 	str+=("<h2>"+pay+"="+payInfo[pay]+"</h2>");	
 			
-	}
+	}*/
 	document.write(str);
 	
 </script>
