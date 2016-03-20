@@ -57,7 +57,7 @@
 		while(hrsWrk <= maxHours){
 			
 			var GrsPay = payCalculate(hrsWrk, payInfo["payRate"], doubleTime, tripleTime);
-			var netPay = GrsPay -(GrsPay*tax);
+			var netPay = GrsPay - (GrsPay*tax);
 			str+="<tr>";
 			str+="<td><center>"+hrsWrk.toFixed(2)+"</center></td>";
 			str+="<td><center>"+payInfo["payRate"]+"</center></td>";
