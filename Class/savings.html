@@ -1,0 +1,49 @@
+<!--
+	Dr. Mark E. Lehr
+	March 23rd, 2016
+	Function Testing
+-->
+<!doctype html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    	<!-- Inserting Libraries -->
+		<script type="text/javascript" src="./functions/savings.js"></script>
+    </head>
+    
+    <body>
+		<script>
+			
+	
+		
+		
+		//take the URL in the Window
+		var url=window.location.href;
+		savingsInfo = new Object();
+		savingsInfo = getUrlValues(url);
+		
+			//Declare variables
+			var pv=savingsInfo["Pv"];  //Present Value in $'s
+			var int=savingsInfo["Int"];//Interest Rate %
+			var nYears=savingsInfo["comp"];//Number of compounding periods (yrs)
+			
+			//Perform Calculation / Call the function
+			var fv1=save1(pv,int,nYears);
+			var fv2=save2(pv,int,nYears);
+			var fv3=save3(pv,int,nYears);
+			var fv4=save4(pv,int,nYears);
+			var fv5=save5(pv,int,nYears);
+			
+			//Display the results
+			document.write("<div><h1><p>Present Value   = $"+pv+"</p>");
+			document.write("<p>Interest Rate   =  "+(int*100).toFixed(2)+"%</p>");
+			document.write("<p>Number of Years = "+nYears+"</p></h1></div>");
+			document.write("<p>Future Value    = $"+fv1.toFixed(2)+"</p>");
+			document.write("<p>Future Value    = $"+fv2.toFixed(2)+"</p>");
+			document.write("<p>Future Value    = $"+fv3.toFixed(2)+"</p>");
+			document.write("<p>Future Value    = $"+fv4.toFixed(2)+"</p>");
+			display(fv5);
+			
+        </script>
+    </body>
+</html>
