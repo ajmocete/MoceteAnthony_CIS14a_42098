@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Form</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="CSE HTML Validator (https://www.htmlvalidator.com/)">
+	<script type="text/javascript" src="getForm.js"
+</head>
+<body>
+	<script>
+		var url=document.location.href;
+		$_GET=getForm(url);
+		for(property in $_GET){
+			document.write(property+"="+decodeURIComponent($_GET[property])+"</br>");
+		}
+	</script>
+</body>
+</html>
