@@ -13,6 +13,7 @@
 	var tax=.10;
 	var maxHours=72;
 	var str="";
+	var payRates =[];
 
 	//function that multiplies the pay by hours; includes the ability to calculate overtime after a given hour
 	function payCalculate(hrs, rate, doubleTime, tripleTime)
@@ -36,7 +37,15 @@
 		var info=map[1];
 		payInfo[id]=info;
 		console.log(nameValuePairs);
-		
+		for(var rate in payInfo)
+		{
+			var pay = rate.split(",");
+			for(var j=0;j<pay.length;j++)
+			{
+				payRates[j] = pay[j+1];
+				console.log(pay);
+			}
+		}
 	}
 	
 	//Display Hour information
