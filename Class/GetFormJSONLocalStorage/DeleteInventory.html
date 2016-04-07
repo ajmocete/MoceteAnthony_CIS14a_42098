@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!--
+	Anthony Mocete
+	April 6th, 2016
+	Lab Work DeleteInventory
+-->
+
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Create the _Get Object</title>
+<script type="text/javascript" src="getForm.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+	var url=document.location.href;
+	//Call the getForm function to place into an object
+	var $_GET=getForm(url);
+	//Retrieve the information from local storage
+	var str=localStorage.getItem("Inventory");
+	//Parse the information back into an array
+	var inventory=JSON.parse(str);
+	
+	console.log(inventory);
+	//delete product in Inventory Object
+	delete inventory[$_GET.product];
+	console.log(inventory);
+	
+	//Display the array
+	for(var items=0;items<inventory.length;items++){
+		document.write("The "+items+" Object</br>");
+		var obj=inventory[items];
+		for(var property in obj){
+			document.write(property+"="+obj[property]+"</br>");
+		}
+	}
+	
+	//Put back the object into local storage after adding
+	var str=JSON.stringify(inventory);
+	localStorage.setItem("Inventory",str);
+</script>
+
+</body>
+</html>
