@@ -1,0 +1,5 @@
+server 209.129.8.2
+usname 42098
+pass 42098cis14a
+port 10000
+ssh
