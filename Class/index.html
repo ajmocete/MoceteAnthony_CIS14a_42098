@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="generator" content="CSE HTML Validator (https://www.htmlvalidator.com/)">
+	<script type="text/javascript" src="functions.js"></script>
+</head>
+
+<body>
+	<script>
+		var name = "testing";
+		var value = "Anything";
+		setCookie(name,value,10);
+		var chkValue =getCookie(name);
+		document.write("<p>"+name+"</p>");
+		document.write("<p>"+value+"</p>");
+		document.write("<p>After "+chkValue+"</p>");
+	</script>
+</body>
+</html>
