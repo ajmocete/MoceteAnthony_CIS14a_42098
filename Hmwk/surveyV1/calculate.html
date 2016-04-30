@@ -12,6 +12,85 @@
 		
 		var answers = getUrlValues(url);
 		console.log(answers);
+		var correct = 0;
+		var refused = 0;
+		
+		//display answers
+		document.write("<h1>Your answers:</h1>");
+		document.write("<p>Question 1: How large is the Military budget?</p>");
+		switch(answers["Answer1"]){
+			case("lt20"):
+				document.write("Less Than 20%");
+				correct++;
+				break;
+			case("gt20"):
+				document.write("Greater Than 20%");
+				break;
+			default:
+				document.write("You didnt answer this question");
+				refused++;
+		}
+		
+		document.write("<p>Question 2: How large is NASA's Budget?</p>");
+		switch(answers["Answer2"]){
+			case("lt5"):
+				document.write("Less Than 5%");
+				correct++;
+				break;
+			case("gt5"):
+				document.write("Greater Than 5%");
+				break;
+			default:
+				document.write("You didnt answer this question");
+				refused++;
+		}
+		
+		document.write("<p>Question 3: How large is the Welfare Budget?</p>");
+		switch(answers["Answer3"]){
+			case("lt60"):
+				document.write("Less Than 60%");
+				break;
+			case("gt60"):
+				document.write("Greater Than 60%");
+				correct++;
+				break;
+			default:
+				document.write("You didnt answer this question");
+				refused++;
+		}
+		
+		document.write("<h1>You got "+ correct + " out of 3 questions correct!</h1>");
+		if(refused > 0) {
+			document.write("<h3>You didn't answer "+ refused + " question(s).</h3>");
+		}
+		
+		
+		document.write("<p>Thank you for taking the survey!</p>");
+		if(correct == 3) {
+			document.write("You answered every question correctly based off the following chart:");
+			
+		} else {
+			document.write("You missed some of the questions. Please refer to the following chart: ");
+		}
+		document.write("</br>");
+		document.write('<img src="http://www.cbpp.org/sites/default/files/styles/report_371px/public/atoms/files/3-4-16bud-policybasics_2.png?itok=fqita01H" alt="US Budget Image">');
+		
+		var surveyResult = {Answer1: answers["Answer1"], Answer2: answers["Answer2"], Answer3: answers["Answer3"], refusedQuestions: refused};
+		console.log(surveyResult);
+		
+		var addStr=JSON.stringify(surveyResult);
+		if (localStorage.getItem("surveyResults") === null) {
+			localStorage.setItem("surveyResults",addStr);
+		} else {
+			var $_GET=getForm(url);
+			//Retrieve from Inventory
+			var str=localStorage.getItem("surveyResults");
+			//Parse survey results
+			var surveyObject = JSON.parse(str);
+			var number= surveyObject.length;
+			surveyObject[number]=
+			//Add our new product to inventory
+		}
 	</script>
 </body>
 </html>
