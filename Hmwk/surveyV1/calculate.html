@@ -3,15 +3,16 @@
 <head>
 	<title>Calculate</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="survey.css"/>
 	<script type="text/javascript" src="getForm.js"></script>
 </head>
 <body>
+	<div class="survey">
 	<script>
 		var url=document.location.href;
-		document.write(url);
 		
 		var answers = getUrlValues(url);
-		console.log(answers);
+		//console.log(answers);
 		var correct = 0;
 		var refused = 0;
 		
@@ -73,24 +74,42 @@
 			document.write("You missed some of the questions. Please refer to the following chart: ");
 		}
 		document.write("</br>");
-		document.write('<img src="http://www.cbpp.org/sites/default/files/styles/report_371px/public/atoms/files/3-4-16bud-policybasics_2.png?itok=fqita01H" alt="US Budget Image">');
+		document.write('<img src="http://www.cbpp.org/sites/default/files/styles/report_371px/public/atoms/files/3-4-16bud-policybasics_2.png?itok=fqita01H" alt="US Budget Image"/>');
+		document.write("</br>");
+		
 		
 		var surveyResult = {Answer1: answers["Answer1"], Answer2: answers["Answer2"], Answer3: answers["Answer3"], refusedQuestions: refused};
-		console.log(surveyResult);
+		//console.log(surveyResult);
 		
-		var addStr=JSON.stringify(surveyResult);
+		var addStr = JSON.stringify(surveyResult);
 		if (localStorage.getItem("surveyResults") === null) {
 			localStorage.setItem("surveyResults",addStr);
+			document.write("New survey created!");
 		} else {
-			var $_GET=getForm(url);
 			//Retrieve from Inventory
-			var str=localStorage.getItem("surveyResults");
 			//Parse survey results
+			var str=localStorage.getItem("surveyResults");
 			var surveyObject = JSON.parse(str);
-			var number= surveyObject.length;
-			surveyObject[number]=
+			//console.log(surveyObject);
+			var array = [];
+			
+			for(var x=0; x < surveyObject.length; x++) {
+				array[x] = surveyObject[x];
+				console.log(surveyObject[x]);
+				console.log(surveyObject.length);
+			}
+			
+			var number = array.length;
+			array[number] = surveyResult;
+			console.log(array[number]);
 			//Add our new product to inventory
+			
+			str=JSON.stringify(array);
+			localStorage.setItem("surveyResults",str);
+			document.write("Survey saved to local storage.");
 		}
 	</script>
+	<h3><a href="compare.html">Compare your survey answers</a></h3>
+	</div>
 </body>
 </html>
