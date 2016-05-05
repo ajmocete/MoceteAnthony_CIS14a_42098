@@ -1,0 +1,13 @@
+Links for reg expression:
+http://pagecolumn.com/tool/regtest.htm
+https://www.cheatography.com/davechild/cheat-sheets/regular-expressions/
+http://www.mkyong.com/regular-expressions/10-java-regular-expression-examples-you-should-know/
+
+
+phone# reg exp: ^\s*[(]?\d{3}[)]?[.-\s]?[0-9]{3}[.-\s]?[0-9]{4}\s*$
+
+First and Last Name reg exp: ^\s*[A-Z]{1}[a-z]{1,15}\s*[A-Z]{1}[']?\w{1,15}\s*$
+
+1-12 reg exp: ^\s*([1-9]|[1][0-2])\s*$
+
+date reg exp: ^\s*([0][1-9]|[1][0-2])[-.\s]?([0][1-9]|([1][0-9]|[2][0-9]|[3][0-1]))[-.\s]?([1][9][2-9][0-9]|[2][0][0-1][0-6])\s*$
