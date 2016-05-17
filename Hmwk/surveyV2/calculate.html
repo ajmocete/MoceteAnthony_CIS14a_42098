@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link rel="stylesheet" type="text/css" href="survey.css"/>
 	<script type="text/javascript" src="getForm.js"></script>
+	<script type="text/javascript" src="compare.js"></script>
 </head>
 <body>
 	<div class="survey">
@@ -109,7 +110,9 @@
 			document.write("Survey saved to local storage.");
 		}
 	</script>
-	<h3><a href="compare.html">Compare your survey answers</a></h3>
-	</div>
+	
+	<h3 onclick="getElementById('compare').innerHTML=compare()"><u>Compare your survey answers</u></h3></div>
+	<div id="compare"></div>
+	<h1><a href="form.html">Retake our survey?</a>
 </body>
 </html>
