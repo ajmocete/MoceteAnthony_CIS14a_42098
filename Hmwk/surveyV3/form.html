@@ -9,16 +9,27 @@
 <body>
 	<h1>Do You Know The U.S Budget? Take Our Survey!</h3>
 	<form action="calculate.html" method="GET">
-		<label for="name">Name:</label><input id="nameField" type="text" name="name"><p id="name"></p></br>
-		<label for="email">Email:<input id="email" type="text" name="email"></br>
-		<label for="date">Date(mm/dd/yr):<input id="date" type="text" name="date"></br>
+		<label for="name">First and Last Name:</label><input id="nameField" type="text" name="name"><div id="name"></div></br>
+		<label for="email">Email:<input id="emailField" type="text" name="email"><div id="email"></div></br>
+		<label for="date">Date(mm-dd-yr):<input id="dateField" type="text" name="date"><div id="date"></div></br>
 		
-	<u onclick="getElementById('formFill').innerHTML=surveyForm()">Take Survey</u>
+	<u id="surveyConfirm">Take Survey</u>
 	<div id="formFill"></form></div>
 
 	
 	<script>
-	document.getElementById("nameField").addEventListener("keypress", formCheck("name"), false);
+	var nameField = document.getElementById('nameField');
+	var emailField = document.getElementById('emailField');
+	var dateField = document.getElementById('dateField');
+	var surveyConfirm = document.getElementById('surveyConfirm');
+	var nmeFldCheck = false;
+	var emlFldCheck = false;
+	var dteFldCheck = false;
+	
+	nameField.addEventListener( 'keypress', nameCheck, false);
+	emailField.addEventListener( 'keypress', emailCheck, false);
+	dateField.addEventListener( 'keypress', dateCheck, false);
+	surveyConfirm.addEventListener('click', surveyForm, false);
 	</script>
 </body>
 </html>

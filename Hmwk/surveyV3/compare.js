@@ -2,12 +2,15 @@ function compare()
 {
 		var str=localStorage.getItem("surveyResults");
 		var surveyObject = JSON.parse(str);
-		var str = "";
+		console.log(surveyObject);
+		str = "";
 		for(var survey=0;survey<surveyObject.length;survey++){
 			var correct = 0;
-			str +="</br><hr>";
-			str += "<h4>Survey #"+(survey + 1)+" by Anonymous</h4></br>";
 			var obj=surveyObject[survey];
+			str +="</br><hr>";
+			str += "<h4>Survey #"+(survey + 1)+" by " +obj['Name']+"("+obj["Email"]+")</h4></br>";
+			str += "<h5>Completed on "+obj["Date"]+"</h5>";
+			
 			
 			
 			str += '<div class="survey '+survey+'">';

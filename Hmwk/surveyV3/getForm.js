@@ -6,6 +6,7 @@ function getUrlValues(url){
 		for(i=0;i<nameValuePairs.length;i++)
 		{
 		var map=nameValuePairs[i].split("=");
+		map[1] = replaceUtf(map[1]);
 		var name= map[0];
 		var value=map[1];
 		object[name]=value;	
@@ -13,3 +14,20 @@ function getUrlValues(url){
 	}
 	return object;
  }
+ 
+ 
+ //function to replace utf-8 characters in the form URL
+ function replaceUtf(str){
+	str = findAndReplace(str, "+", " ");
+	//Add the rest of the UTF-8 replacements below...
+	str = findAndReplace(str, "%40", "@");
+	return str;
+}
+
+function findAndReplace(str, findVal, changeTo){
+	do{
+		var findC = str.indexOf(findVal);
+		str = str.replace(findVal, changeTo);
+	}while(findC != -1);
+	return str;	
+}

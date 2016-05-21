@@ -61,13 +61,13 @@
 				refused++;
 		}
 		
-		document.write("<h1>You got "+ correct + " out of 3 questions correct!</h1>");
+		document.write("<h1>"+answers['name']+", You got "+ correct + " out of 3 questions correct!</h1>");
 		if(refused > 0) {
 			document.write("<h3>You didn't answer "+ refused + " question(s).</h3>");
 		}
 		
 		
-		document.write("<p>Thank you for taking the survey!</p>");
+		document.write("<p>Thank you for taking the survey "+answers['name']+"!</p>");
 		if(correct == 3) {
 			document.write("You answered every question correctly based off the following chart:");
 			
@@ -79,7 +79,7 @@
 		document.write("</br>");
 		
 		
-		var surveyResult = {Answer1: answers["Answer1"], Answer2: answers["Answer2"], Answer3: answers["Answer3"], refusedQuestions: refused};
+		var surveyResult = {Name: answers["name"], Email: answers["email"], Date: answers["date"], Answer1: answers["Answer1"], Answer2: answers["Answer2"], Answer3: answers["Answer3"], refusedQuestions: refused};
 		//console.log(surveyResult);
 		
 		var addStr = JSON.stringify(surveyResult);
