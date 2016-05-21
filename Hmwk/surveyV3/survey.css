@@ -1,0 +1,26 @@
+.survey {
+	background-color: 50A641;
+}
+
+h1, h3 {
+	color: F2FF00;
+}
+
+img {
+	 margin: auto;
+    width: 30%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+
+p {
+	background-color: F2FF00;
+}
+
+body {
+	margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+	text-align: center;
+}
