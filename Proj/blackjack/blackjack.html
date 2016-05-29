@@ -1,0 +1,54 @@
+<!-- Blackjack  -->
+<!-- By: Anthony Mocete -->
+<!-- 42098 -->
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Blackjack</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="stylesheet" type="text/css" href="blackjack.css">
+</head>
+<body>
+	<div id="btable">
+		<h1 id="Banner">Black Jack</h1>
+		<div id="PlayGame"><form>
+			<input id="Play" type="Button" value="Play Again?">
+			<label for="Bet">Bet $</label><input id="Bet" type="Text">
+		</form></div>
+		<div id="Money">Player Money:<div id="PlayerMoney"></div>Bet Amount:<div id="BetAmount"></div></div>
+	
+		<div id="DealersCards">
+			<h2 id="dPlackard">Dealer:</h2>
+			<div class="Cardsr1" id="d1"></div>
+			<div class="Cardsr1" id="d2"></div>
+			<div class="Cardsr1" id="d3"></div>
+			<div class="Cardsr1" id="d4"></div>
+			<div class="Cardsr2" id="d5"></div>
+			<div class="Cardsr2" id="d6"></div>
+			<div class="Cardsr2" id="d7"></div>
+			<div class="Cardsr2" id="d8"></div>
+		</div>
+		<div id="PlayersCards">
+			<h2 id="pPlackard">Player:</h2>
+			<div class="Cardsr1" id="p1"></div>
+			<div class="Cardsr1" id="p2"></div>
+			<div class="Cardsr1" id="p3"></div>
+			<div class="Cardsr1" id="p4"></div>
+			<div class="Cardsr2" id="p5"></div>
+			<div class="Cardsr2" id="p6"></div>
+			<div class="Cardsr2" id="p7"></div>
+			<div class="Cardsr2" id="p8"></div>
+		</div>
+		<div id="PlayerControl">
+		<form>
+			<input id="Surrender" type="Button" value="Surrender">
+			<input id="Stand" type="Button" value="Stand">
+			<input id="Double" type="Button" value="Double">
+			<input id="Hit" type="Button" value="Hit">
+			<input id="Bet5" type="Button" value="Bet5">
+		</form>
+		</div>
+	</div>
+	<script src="blackjack.js"></script>
+</body>
+</html>

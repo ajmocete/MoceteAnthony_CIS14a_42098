@@ -1,0 +1,123 @@
+body{
+	background-color:#000000;
+	margin: auto;
+	width: 80%;
+	padding: 10px;
+	text-align: center;
+		
+	}
+	
+#btable{
+	background-color:#23f40b;
+	border: 5px solid #214078;
+}
+	
+#Banner{
+	background-color: #214078;
+	margin: 5px 50px auto 50px;
+	padding:10px;
+}
+	
+#PlayGame {
+	background-color: #cc3300;
+	margin: 5px 500px auto 500px;
+	padding:10px;
+	width: 30%;
+	border: 3px solid #214078;			
+	}
+	
+#Money {
+	display:inline;	
+}
+		
+#PlayerControl{
+	margin: 5px 50px 10px 50px;
+	padding:10px;
+			
+}
+  
+input[type=Button]{
+	background-color: #cc3300;
+	border:  3px solid #214078;
+	width: 100px; 
+	height: 50px;
+	-moz-border-radius: 100px / 50px; -webkit-border-radius: 100px / 50px; border-radius: 100px / 50px;
+	color: Yellow;
+	padding: 5px 15px;
+	cursor: pointer;
+	margin: auto 15px auto 15px;
+}
+		
+#betTable{
+	margin: 15px auto;
+}
+			
+input[type=text]{
+	background-color: #214078;
+	border:  1.5px solid black;
+	color: Yellow;
+	padding: 2px 5px;
+	cursor: pointer;
+	margin: auto 15px auto 15px;
+}
+
+#off {
+	/*background-color: #94b8b8;
+	border: none;
+	color: Yellow;
+	padding: 5px 15px;
+	cursor: pointer;
+	margin: auto 15px auto 15px;*/
+	background-color: #94b8b8;
+	border:  none;
+	width: 100px; 
+	height: 50px;
+	-moz-border-radius: 100px / 50px; 
+	-webkit-border-radius: 100px / 50px; 
+	border-radius: 100px / 50px;
+	color: Yellow;
+	padding: 5px 15px;
+	margin: auto 15px auto 15px;
+}
+	
+#PlayerWins {
+	background-color: #66ff33;
+	margin: 5px 50px auto 50px;
+	padding:10px;
+}
+
+#DealerWins {
+	background-color: #e60000;
+	margin: 5px 50px auto 50px;
+	padding:10px;
+}
+
+img{
+	margin: 5px;
+	border: 1px solid #66b3ff;
+}	
+
+#PlayersCards {
+	/*float: left;*/
+	margin: 20px 50px 5px 500px;
+}
+#DealersCards{
+	/*float: right;*/
+	margin: 5px 500px 5px 50px;
+}
+.Cardsr1, .Cardsr2{
+	display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 5px;
+}
+
+#dPlackard ,#pPlackard{
+	background-color: #214078;
+	border: none;
+	color: Yellow;
+	border:  3px solid #000000;
+	margin: 5px 400px 5px 400px;
+}
+	
+	
