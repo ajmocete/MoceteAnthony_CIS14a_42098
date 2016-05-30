@@ -36,7 +36,7 @@ body{
 			
 }
   
-input[type=Button]{
+.on{
 	background-color: #cc3300;
 	border:  3px solid #214078;
 	width: 100px; 
@@ -61,7 +61,7 @@ input[type=text]{
 	margin: auto 15px auto 15px;
 }
 
-#off {
+.off {
 	/*background-color: #94b8b8;
 	border: none;
 	color: Yellow;
