@@ -41,7 +41,7 @@ var view = {
 	wipeElement: function(Elmnt) {
 		var element = document.getElementById(Elmnt);
 		element.innerHTML = "";
-		element.setAttribute("id", null);
+		//element.setAttribute("id", null);
 		developer.log("Wiped Element" + Elmnt);
 	},
 	setCard: function(Elmnt, img){
@@ -278,9 +278,13 @@ var controller = {
 							game.playerMoney = game.playerMoney + controller.roundBet;
 							view.displayMessage(game.playerMoney, "PlayerMoney");
 							developer.log(parseFloat(game.playerMoney) + parseFloat(controller.roundBet));
+							//controller.endRound();
+							developer.log("End Round");
 						} else {
 							developer.log("Dealer has 21!");
 							view.displayMessage("Dealer Wins. Press Hit to bet again!", "Banner");
+							//controller.endRound();
+							developer.log("End Round");
 						}
 					} else { 
 						dealerDraw = false;
@@ -291,22 +295,51 @@ var controller = {
 							game.playerMoney = game.playerMoney + controller.roundBet;
 							developer.log(parseFloat(game.playerMoney) + parseFloat(controller.roundBet));
 							view.displayMessage(game.playerMoney, "PlayerMoney");
+							//controller.endRound();
+							developer.log("End Round");
 						} else if((controller.dealerCount > controller.playerCount) && !(controller.dealerCount > 21)) { //if the dealer has more than the player
 							developer.log("Dealer Wins!");
 							view.displayMessage("Dealer Wins. Press Hit to bet again!", "Banner");
 							view.displayMessage(game.playerMoney, "PlayerMoney");
+							//controller.endRound();
+							developer.log("End Round");
 						} else {
 							developer.log("Player Wins!");
 							view.displayMessage("Player Wins! Press Hit to Bet again!", "Banner");
 							game.playerMoney = game.playerMoney + (controller.roundBet * 2);
 							view.displayMessage(game.playerMoney, "PlayerMoney");
 							developer.log(parseFloat(game.playerMoney) + parseFloat(controller.roundBet));
+							//controller.endRound();
+							developer.log("End Round");
 						}
 					}
 				
 				}while(dealerDraw);
 				
 		}
+		
+		var hitButton = document.getElementById("Hit");
+		hitButton.onclick = controller.restartRound;
+	},
+	restartRound: function(){
+		
+		//view.wipeElement("dealersCard");
+		//view.wipeElement("playersCard");
+		view.setButton("Hit", "on");
+		view.setButton("Bet5", "on");
+		view.setButton("CashOut","on");
+		view.setButton("Stand", "off");
+		
+		
+		controller.cardDealt = 0;
+		controller.playerCount = 0;
+		controller.dealerCount = 0;
+		game.dealersCard = [];
+		game.playersCard = [];
+		
+		view.displayMessage('<h2 id="pPlackard">Player:<div id="pCardCount"></div></h2>', "PlayersCards");
+		view.displayMessage('<h2 id="dPlackard">Dealer:<div id="dCardCount"></div></h2>', "DealersCards");
+		controller.startRound();
 	},
 	betAmount: function(betValue) {
 		var betAmount;
