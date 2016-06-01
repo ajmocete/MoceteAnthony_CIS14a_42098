@@ -359,7 +359,7 @@ var controller = {
 			case'Bet100':
 				betAmount = 100.00;
 				break;
-			case'Bet5':
+			case'Bet500':
 				betAmount = 500.00;
 				break;
 			default:
