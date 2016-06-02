@@ -211,7 +211,7 @@ var controller = {
 		developer.log("controller.playerCount set to: "+controller.playerCount);
 		
 		if(controller.playerCount == 21){
-			controller.DealerTurn("blackjack");
+			controller.DealerTurn();
 			developer.log("player has Blackjack!");
 		}
 		
@@ -240,7 +240,7 @@ var controller = {
 				developer.log("player has bust");
 				view.setButton("Hit", "off");
 			} else if(controller.playerCount == 21){
-				controller.DealerTurn("blackjack");
+				controller.DealerTurn();
 				developer.log("player has Blackjack!");
 			}
 		}
