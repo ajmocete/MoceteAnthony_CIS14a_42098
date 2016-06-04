@@ -85,15 +85,41 @@ var game = {
 		developer.log("betButton set to: "+betButton);
 		developer.log(game.betAmount);
 		
+		/*var curBetButtonValue = document.getElementById("Bet5").value;
+		
+		
+		developer.log(betButtonValue);
+		switch(betButtonValue) {
+			case betArray[0]:
+				if(game.PlayerMoney < 5){
+					return null;
+				} else {
+					if(game.betAmount > 5) {
+					game.betAmount = 0;
+					} else {
+					game.betAmount++;
+					}
+		
+		
+					developer.log(game.betAmount);
+					developer.log(betArray[game.betAmount])
+					betButton.setAttribute("value", betArray[game.betAmount]);
+				}
+				break;
+			
+			default:
+				developer.log("It didnt work bro");
+		}*/
 		if(game.betAmount > 5) {
 			game.betAmount = 0;
 		} else {
 			game.betAmount++;
 		}
 		
+		
 		developer.log(game.betAmount);
 		developer.log(betArray[game.betAmount])
-		betButton.setAttribute("value", betArray[game.betAmount]);
+		betButton.setAttribute("value", betArray[game.betAmount]); 
 	},
 	pushToPlayer: function(card, player) {
 		if(player == "Player"){
