@@ -1,0 +1,114 @@
+<!-- ShoppingCart: Item View  -->
+<!-- By: Anthony Mocete -->
+<!-- 42098 -->
+<!doctype html>
+<html lang="en">
+<head>
+	<title>View an Item</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="getForm.js"></script>
+	<script type="text/javascript" src="secret.js"></script>
+</head>
+<body>
+<div id="siteHead">
+	<div id="banner"><h1>JunkBox</h1></div>
+	
+</div>
+	<script> 
+		//Grab StoreDatabase from local storage
+		//Grab the item value in the URL
+		var storeDatabase=localStorage.getItem("StoreDatabase"); 
+		var $store=JSON.parse(storeDatabase);
+		var url=document.location.href;
+		$_GET=getUrlValues(url);
+		
+		console.log($store);
+		console.log($_GET);
+		
+		var $itm;
+		
+		//Pull the requested item from the StoreDatabase
+		for(var obj in $store) {
+			console.log($store[obj]);
+			var Check = $store[obj];
+			if($_GET["item"] === Check["prodName"]){
+				$itm = $store[obj];
+				break;
+			} else {
+				$itm = $eei
+			}
+		}
+		
+		console.log($itm);
+		//print item information
+		var str = '<div id="itemDisplay">';
+		str += '<h1>'+$itm['prodName']+'</h1>';
+		str += '<h2>Customer Rating: '+$itm['prodRating']+' Stars!</h2>';
+		str += '<img src="'+$itm['prodImg']+'" alt="'+$itm['prodName']+'">';
+		str += '<p id="PriceRow">Price: $'+$itm['prodPrice']+' ';
+		str += '<form>';
+		str += '<input id="buyButton" type="button" value="Add to Shopping Cart"></form></p>';
+		str += '<div id="addItemNoti"></div><div id="shoppingCart"><a href="shoppingcart.html">View Cart</a></div>';
+		str += '<h3 id="ProductDiscription">Description:</h3>';
+		str += '<p>'+$itm['prodDescription']+'</p>';
+		str += '<h2 id="Reviews">Reviews By Other Customers</h2>';
+		//print customer reviews
+		for(var i = 0; i < $itm["prodReviews"].length; i++) {
+			var review = $itm["prodReviews"][i];
+			console.log($itm["prodReviews"][i]);
+			str += '<p>Anonymous Customer #'+i+': '+review+'</p>';
+		}
+		str+="</div>";
+		document.write(str);
+		
+		var buyButton = document.getElementById("buyButton");
+		buyButton.onclick = addItemToCart;
+		
+		function addItemToCart() {
+			var loop=true;
+			do{
+				var purchaseAmount = prompt("How many "+$itm['prodName']+' would you like to purchase?');
+				//if(isNaN(purchaseAmount) || (purchaseAmount <= 0)){
+				//	alert("Please Enter a Valid number");
+				if(purchaseAmount == null) {
+					loop=false;
+					console.log("Customer cancelled order");
+				} else if(isNaN(purchaseAmount) || (purchaseAmount <= 0)){
+					alert("Please Enter a Valid number");
+				} else {
+					loop=false;
+					console.log("Customer bought " + purchaseAmount+ " "+$itm['prodName']+"(s)");
+					
+					var shoppingCart = localStorage.getItem("ShoppingCart");
+					var cartObj = JSON.parse(shoppingCart);
+					var cartSize = cartObj["cartCount"];
+					console.log(cartObj);
+					
+					cartObj[cartSize] = {
+						prchComp: $itm["prodComp"],
+						prchPrice: $itm["prodPrice"],
+						prchName: $itm["prodName"],
+						prchImg: $itm["prodImg"],
+						prchAmt: parseInt(purchaseAmount),
+						orderID: cartSize
+					}
+					console.log(cartObj);
+					
+					console.log(cartSize);
+					cartObj["cartCount"]++;
+					
+					var addItem = document.getElementById("addItemNoti");
+					addItem.innerHTML = "Added "+cartObj[cartSize]["prchAmt"]+" to the cart";
+					
+					
+					
+					shoppingCart = JSON.stringify(cartObj);
+					console.log(shoppingCart);
+					localStorage.setItem("ShoppingCart", shoppingCart);
+				}
+			}while(loop);
+			
+		}
+	</script>
+</body>
+</html>

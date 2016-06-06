@@ -3,7 +3,7 @@ function getCookies()
 	var cookies = {}; 
 	var all = document.cookies;
 	
-	if(all === "") {
+	if(all === undefined) {
 		return cookies;
 	}
 	

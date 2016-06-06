@@ -1,0 +1,81 @@
+<!-- ShoppingCart  -->
+<!-- By: Anthony Mocete -->
+<!-- 42098 -->
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Shopping Cart</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+</head>
+<body>
+	<div id="ShoppingCartList">
+	<script>
+		var cartStr=localStorage.getItem("ShoppingCart"); 
+		var $cartObj=JSON.parse(cartStr);
+		console.log($cartObj);
+		var str = '';
+		
+		if($cartObj == null){
+			str += "There are no items in your shopping cart.";
+			str += "</br>"
+			str += '<a href="shop.html">Return to Shop</a>';
+			document.write(str);
+		} else {
+			console.log($cartObj.cartCount);
+			var loopCount = 1;
+			var totalCost = 0.00;
+			for(obj in $cartObj) {
+				
+				if(isNaN($cartObj[obj])){ 
+					console.log($cartObj[obj].prchName);
+					console.log($cartObj[obj].prchPrice);
+					console.log($cartObj[obj].prchAmt);
+					console.log($cartObj[obj].prchImg);
+					
+					str += '<div id="itemPurch"><h3>Item #'+loopCount+'</h3>';
+					str += '<img src="'+$cartObj[obj].prchImg+'" alt="'+$cartObj[obj].prchName+'">';
+					str += '<p>Name: '+$cartObj[obj].prchName+'</p>';
+					str += '<p>Price: $'+$cartObj[obj].prchPrice+'</p>';
+					str += '<p>Quantity: '+$cartObj[obj].prchAmt+' ';
+					console.log("Order ID "+$cartObj[obj].orderID);
+					str += '<a href="editPrch.html?item='+$cartObj[obj].orderID+'">Change Quantity?</a></p>';
+					//str += '<div id="editItem"><input type="Button" value="Change Quantity"></div>';
+					
+					//str += '<input id="itemNumb type="hidden" value="'+(loopCount-1)+'">';
+					var subtotal = $cartObj[obj].prchAmt * $cartObj[obj].prchPrice;
+					subtotal = subtotal.toFixed(2);
+					totalCost = parseFloat(totalCost) + parseFloat(subtotal);
+					str += '<h4>Sub Total: $'+subtotal+'</h4></div>';
+					
+					loopCount++;
+				} else {
+					console.log("End of Cart");
+					console.log(totalCost);
+					console.log("loopCount"+loopCount);
+					if(loopCount == 1){
+						str += '<div id="itemPurch">';
+						str += '<p>There is nothing in your shopping cart.</p>';
+						str += '<a href="shop.html">Return to Shop</a>';
+					}
+					
+				}
+				
+				console.log("totalCost"+totalCost);
+			}
+			str += '<hr><div id="totalCost">';
+			str += '<h2>SubTotal: $'+parseFloat(totalCost).toFixed(2)+'</h2>';
+			var salesTax = (parseFloat(totalCost) / 9.3);
+			salesTax = salesTax.toFixed(2);
+			str += '<h2>Tax: $'+Number(salesTax)+'</h2>';
+		    totalCost = (+parseFloat(totalCost)) + (+parseFloat(salesTax).toFixed(2));
+			str += '<h1>Total Cost: $'+parseFloat(totalCost).toFixed(2)+'</h1></div>';
+			document.write(str);	
+		}
+		
+		
+		
+	</script>
+	</div>
+</body>
+</html>

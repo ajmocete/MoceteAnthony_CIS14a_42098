@@ -6,4 +6,5 @@ function setCookie(name, value, daysToLive)
 			cookie+="; max-age="+(daysToLive*60*60*24);
 		} 
 		document.cookie = cookie;
+	
 }

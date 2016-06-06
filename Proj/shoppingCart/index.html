@@ -1,0 +1,26 @@
+<!-- Shopping Cart from page  -->
+<!-- By: Anthony Mocete -->
+<!-- 42098 -->
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Welcome!</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="storeDatabase.js"></script>
+</head>
+<body>
+	<script>
+		if(localStorage.getItem("ShoppingCart") === null) {
+			var shoppingCart = {cartCount: 0};
+			var addStr = JSON.stringify(shoppingCart);
+			localStorage.setItem("ShoppingCart",addStr);
+			document.write("<h1>Welcome to JunkCrate!");
+			buildStoreDatabase();
+		} else {
+			document.write("<h1>Welcome back to JunkCrate!</h1>");
+		}
+	</script>
+	
+	<a href="shop.html">Enter Shop</a>
+</body>
+</html>

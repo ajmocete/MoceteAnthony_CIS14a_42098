@@ -1,0 +1,100 @@
+<!-- ShoppingCart: Item View  -->
+<!-- By: Anthony Mocete -->
+<!-- 42098 -->
+<!doctype html>
+<html lang="en">
+<head>
+	<title>Edit Purchase Deets</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="getForm.js"></script>
+	<script type="text/javascript" src="secret.js"></script>
+</head>
+<body>
+<div id="siteHead">
+	<div id="banner"><h1>JunkBox</h1></div>
+	<script>
+		var cartStr=localStorage.getItem("ShoppingCart"); 
+		var $cartObj=JSON.parse(cartStr);
+		var url=document.location.href;
+		$_GET=getUrlValues(url);
+		console.log($_GET);
+		
+		if($cartObj[$_GET["item"]] == undefined){
+			var str = '<div id="itemDisplay">';
+			var str = "This Item Is Not In Your Shopping Cart";
+			str += '<a href="shoppingcart.html">Return to Shopping Cart</a></div>';
+			document.write(str);
+		} else {
+		
+			var $itm = $cartObj[$_GET["item"]];
+			console.log($itm);
+			var str = '<div id="itemDisplay">';
+			str += '<h2>'+$itm['prchName']+'</h2>';
+			str += '<img src="'+$itm['prchImg']+'" alt="'+$itm['prchName']+'">';
+			str += '<p id="PriceRow">Price: $'+$itm['prchPrice']+'</p> ';
+			str += '<p id="nQMessage"></p>';
+			str += '<p id="quantity">Quantity:<input id="newQuantity" value="'+$itm['prchAmt']+'"><input id="update" type="button" value="Update quantity"></p> ';
+			str += '<div id="deleteItem"><input id="Delete"type="Button" value="Delete Item"></div></br>';
+			str += '<a href="shoppingcart.html">Return to Shopping Cart</a></div>';
+			document.write(str);
+			var updateButton = document.getElementById("update");
+			updateButton.onclick = updateQuantity;
+			var deleteButton = document.getElementById("Delete")
+			deleteButton.onclick = deleteItem;
+		}
+		
+		
+		function updateQuantity() {
+			var newQuantity = document.getElementById("newQuantity").value;
+			console.log(newQuantity);
+			var nQMessage = document.getElementById("nQMessage");
+			
+			if(newQuantity <= 0 || isNaN(newQuantity)){
+				nQMessage.innerHTML = "Please Enter A Valid Number(minimum 1)";
+			} else{
+				
+				//update the shoppingcart object with the new quantity
+				$cartObj[$_GET["item"]].prchAmt = newQuantity;
+				console.log($cartObj[$_GET["item"]].prchAmt);
+			
+				//update shoppingCart in localStorage
+				shoppingCart = JSON.stringify($cartObj);
+				console.log(shoppingCart);
+				localStorage.setItem("ShoppingCart", shoppingCart);
+			
+				//Display message to user that cart was updated
+			
+				nQMessage.innerHTML = "Updated Purchase Quantity to "+newQuantity;
+			}
+		}
+		
+		function deleteItem(){
+			var confirmBool = confirm("Are you sure you want to remove "+$itm['prchName']);
+			if(confirmBool == true) {
+				console.log($cartObj);
+				var cart = $cartObj;
+				console.log(cart);
+				
+				delete(cart[$_GET["item"]]);
+				
+				shoppingCart = JSON.stringify(cart);
+				console.log(shoppingCart);
+				localStorage.setItem("ShoppingCart", shoppingCart);
+				
+				nQMessage.innerHTML = "Removed Item From Cart";
+				//console.log(removedItem);
+				console.log($cartObj);
+				var delay=2000; //1 second
+
+				setTimeout(function() {
+					console.log("refreshing Page...");
+					location.reload(); 
+				}, delay);
+			}
+		}
+		
+		
+	</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!-- ShoppingCart  -->
+<!-- By: Anthony Mocete -->
+<!-- 42098 -->
+<!doctype html>
+<html lang="en">
+<head>
+	<title>CookieTester</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="getCookies.js"></script>
+	<script type="text/javascript" src="setcookie.js"></script>
+</head>
+<body>
+
+	<h1>Testing cookie functions</h1>
+	<p>Asking for cookie that does not exist<p>
+	<script>
+		var cookie = getCookies();
+		document.write(cookie);
+		console.log(cookie);
+	</script>
+	<p>creating test cookie</p>
+	<script>
+		setCookie("test", "value=dumb", 2);
+		var cookie = getCookies();
+		document.write(cookie);
+		console.log(cookie);
+	</script>
+</body>
+</html>
