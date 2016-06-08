@@ -8,192 +8,162 @@
 	<script type="text/javascript" src="compare.js"></script>
 </head>
 <body>
-	<div class="survey">
-	<script>
-		var url=document.location.href;
-		
-		var answers = getUrlValues(url);
-		//console.log(answers);
-		
-		
-		//display answers
-		document.write("<h1>Your answers:</h1>");
-		document.write("<p>Question 1: When you are home, what activity do you do in your spare time?</p>");
-		switch(answers["Answer1"]){
-			case("TV"):
-				document.write("Watching TV");
-				
-				break;
-			case("READ"):
-				document.write("Reading Books");
-				break;
-			case("VG"):
-				document.write("Playing Video Games");
-				break;
-			default:
-				document.write('"Stuff"');
-				refused++;
-		}
-		
-		document.write("<p>Question 2: Do You Go To School?</p>");
-		switch(answers["Answer2"]){
-			case("Yes"):
-				document.write("Yes");
-				
-				break;
-			case("No"):
-				document.write("No");
-				break;
-			default:
-				document.write("You didnt answer this question");
-				;
-		}
-		
-		document.write("<p>If You Go To School, How many Hours a Week Do you Attend Class</p>");
-		switch(answers["Answer2Op1"]){
-			case("lt5"):
-				document.write("Less Than 5 hours/week");
-				break;
-			case("5t10"):
-				document.write("5 - 10 hours/week");
-				
-				break;
-			case("gt10"):
-				document.write("10+ hours/week");
-				
-				break;
-			default:
-				document.write("You didnt answer this question");
-				refused++;
-		}
-		
-		document.write("<p>How many Hours a Week Do You Study?</p>");
-		switch(answers["Answer2Op2"]){
-			case("lt5"):
-				document.write("Less Than 5 hours/week");
-				break;
-			case("5t10"):
-				document.write("5 - 10 hours/week");
-				
-				break;
-			case("gt10"):
-				document.write("10+ hours/week");
-				
-				break;
-			default:
-				document.write("You didnt answer this question");
-				refused++;
-		}
-		
-		document.write("<p>Question 3: Do You Work At A Job(s)?</p>");
-		switch(answers["Answer3"]){
-			case("yes"):
-				document.write("Yes");
-				break;
-			case("no"):
-				document.write("No");
-				
-				break;
-			case("gt10"):
-				document.write("10+ hours/week");
-				
-				break;
-			default:
-				document.write("You didnt answer this question");
-				refused++;
-		}
-		
-		document.write("<p>How many hours do you work a week?</p>");
-		switch(answers["Answer3Op1"]){
-			case("lt10"):
-				document.write("Less Than 10 hours/Week");
-				break;
-			case("10to35"):
-				document.write("10 to 35 hours/week");
-				
-				break;
-			case("35to50"):
-				document.write("35 to 50 hours/week");
-				
-				break;
-				case("gt50"):
-				document.write("51+ hours/week");
-				
-				break;
-			default:
-				document.write("You didnt answer this question");
-				refused++;
-		}
-		document.write("<p>Question 4: How Many Hours of Sleep A Day Do you Get?</p>");
-		switch(answers["Answer4"]){
-			case("lto4"):
-				document.write("1 to 4 hours/day");
-				break;
-			case("5to10"):
-				document.write("5 to 10 hours/day");
-				
-				break;
-			case("gt11"):
-				document.write("11+ hours/day");
-				
-				break;
-				case("gt50"):
-				document.write("51+ hours/week");
-				
-				break;
-			default:
-				document.write("You didnt answer this question");
-				refused++;
-		}
-		
-		
-		document.write("<p>Thank you for taking the survey "+answers['name']+"!</p>");
-		if(correct == 3) {
-			document.write("You answered every question correctly based off the following chart:");
-			
-		} else {
-			document.write("You missed some of the questions. Please refer to the following chart: ");
-		}
-		document.write("</br>");
-		document.write('<img src="http://www.cbpp.org/sites/default/files/styles/report_371px/public/atoms/files/3-4-16bud-policybasics_2.png?itok=fqita01H" alt="US Budget Image"/>');
-		document.write("</br>");
-		
-		
-		var surveyResult = {Name: answers["name"], Email: answers["email"], Date: answers["date"], Answer1: answers["Answer1"], Answer1Op1: answers["Answer1Op1"], Answer1Op2: answers["Answer1Op2"], 
-							Answer2: answers["Answer2"], Answer3: answers["Answer3"], Answer3Op1: answers["Answer3Op1"], Answer4: answers["Answer4"] };
-		//console.log(surveyResult);
-		
-		var addStr = JSON.stringify(surveyResult);
-		if (localStorage.getItem("surveyResults") === null) {
-			localStorage.setItem("surveyResults",addStr);
-			document.write("New survey created!");
-		} else {
-			//Retrieve from Inventory
-			//Parse survey results
-			var str=localStorage.getItem("surveyResults");
-			var surveyObject = JSON.parse(str);
-			//console.log(surveyObject);
-			var array = [];
-			
-			for(var x=0; x < surveyObject.length; x++) {
-				array[x] = surveyObject[x];
-				console.log(surveyObject[x]);
-				console.log(surveyObject.length);
-			}
-			
-			var number = array.length;
-			array[number] = surveyResult;
-			console.log(array[number]);
-			//Add our new product to inventory
-			
-			str=JSON.stringify(array);
-			localStorage.setItem("surveyResults",str);
-			document.write("Survey saved to local storage.");
-		}
-	</script>
+<div class="survey">
+<script>
+var url=document.location.href;
 	
-	<h3 onclick="getElementById('compare').innerHTML=compare()"><u>Compare your survey answers</u></h3></div>
-	<div id="compare"></div>
-	<h1><a href="form.html">Retake our survey?</a>
+var answers = getUrlValues(url);
+//console.log(answers);
+	
+	
+//display answers
+document.write("<h1>Your answers:</h1>");
+document.write("<p>Question 1: When you are home, what activity do you do in your spare time?</p>");
+switch(answers["Answer1"]){
+	case("TV"):
+		document.write("Watching TV");
+		break;
+	case("READ"):
+		document.write("Reading Books");
+		break;
+	case("VG"):
+		document.write("Playing Video Games");
+		break;
+	default:
+		document.write('"Stuff"');
+}	
+	
+document.write("<p>Question 2: Do You Go To School?</p>");
+switch(answers["Answer2"]){
+	case("Yes"):
+		document.write("Yes");	
+		break;
+	case("No"):
+		document.write("No");
+		break;
+	default:
+		document.write("You didnt answer this question");	
+}
+document.write("<p>How many Hours a Week Do you Attend Class</p>");
+switch(answers["Answer2Op1"]){
+	case("lt5"):
+		document.write("Less Than 5 hours/week");
+		break;
+	case("5t10"):
+		document.write("5 - 10 hours/week");
+		break;
+	case("gt10"):
+		document.write("10+ hours/week");
+		break;
+	default:
+		document.write("You didnt answer this question");		
+}
+		
+document.write("<p>How many Hours a Week Do You Study?</p>");
+switch(answers["Answer2Op2"]){
+	case("lt5"):
+		document.write("Less Than 5 hours/week");
+		break;
+	case("5t10"):
+		document.write("5 - 10 hours/week");
+		break;
+	case("gt10"):
+		document.write("10+ hours/week");
+		break;
+	default:
+		document.write("You didnt answer this question");
+}
+document.write("<p>Question 3: Do You Work At A Job(s)?</p>");
+switch(answers["Answer3"]){
+	case("yes"):
+		document.write("Yes");
+		break;
+	case("no"):
+		document.write("No");	
+		break;
+	case("gt10"):
+		document.write("10+ hours/week");
+		break;
+	default:
+	document.write("You didnt answer this question");
+}
+document.write("<p>How many hours do you work a week?</p>");
+switch(answers["Answer3Op1"]){
+	case("lt10"):
+		document.write("Less Than 10 hours/Week");
+		break;
+	case("10to35"):
+		document.write("10 to 35 hours/week");
+		break;
+	case("35to50"):
+		document.write("35 to 50 hours/week");
+		break;
+	case("gt50"):
+		document.write("51+ hours/week");
+		break;
+	default:
+		document.write("You didnt answer this question");
+}
+document.write("<p>Question 4: How Many Hours of Sleep A Day Do you Get?</p>");
+switch(answers["Answer4"]){
+	case("1to4"):
+		document.write("1 to 4 hours/day");
+		break;
+	case("5to10"):
+		document.write("5 to 10 hours/day");
+		break;
+	case("gt11"):
+		document.write("11+ hours/day");
+		break;
+	case("gt50"):
+		document.write("51+ hours/week");
+		break;
+	default:
+		document.write("You didnt answer this question");
+}
+document.write("<p>Thank you for taking the survey "+answers['name']+"!</p>");
+var surveyResult = {Name: answers["name"], Email: answers["email"], Date: answers["date"], Answer1: answers["Answer1"], Answer1Op1: answers["Answer1Op1"], Answer1Op2: answers["Answer1Op2"], Answer2: answers["Answer2"], Answer3: answers["Answer3"], Answer3Op1: answers["Answer3Op1"], Answer4: answers["Answer4"] };
+	//console.log(surveyResult);
+		
+var addStr = JSON.stringify(surveyResult);
+if(localStorage.getItem("surveyResults") === null) {
+	localStorage.setItem("surveyResults",addStr);
+	document.write("</br>New survey created!");
+	var array = [];
+	for(var x=0; x < surveyObject.length; x++) {
+		array[x] = surveyObject[x];
+		console.log(surveyObject[x]);
+		console.log(surveyObject.length);
+	}
+	document.write("There are no other surveys to compare yours to.");
+} else {
+	//Retrieve from Inventory
+	//Parse survey results
+	var str=localStorage.getItem("surveyResults");
+	var surveyObject = JSON.parse(str);
+	//console.log(surveyObject);
+	var array = [];
+			
+	for(var x=0; x < surveyObject.length; x++) {
+		array[x] = surveyObject[x];
+		console.log(surveyObject[x]);
+		console.log(surveyObject.length);
+	}
+			
+	var number = array.length;
+	array[number] = surveyResult;
+	console.log(array[number]);
+	//Add our new product to inventory
+			
+	str=JSON.stringify(array);
+	localStorage.setItem("surveyResults",str);
+	document.write("</br>Survey saved to local storage.");
+}	
+</script>
+</div>
+<h3 onclick="getElementById('compare').innerHTML=compare()"><u>Compare your survey answers</u></h3></div>
+<div id="compare"></div>
+<h1><a href="form.html">Retake our survey?</a>
+	
 </body>
 </html>

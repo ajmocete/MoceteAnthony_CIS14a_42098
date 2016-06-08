@@ -1,4 +1,5 @@
 function buildStoreDatabase() {
+	//array of all items available in the store.
 	var storeDatabase = [
 		{
 			prodName: "Mystery Bag",
@@ -48,7 +49,29 @@ function buildStoreDatabase() {
 			prodRating: -2000,
 			prodImg: "./images/diamond.jpg"
 		},
-		
+		{
+			prodName: "The Presidency Of The United States",
+			prodPrice: 50000000.00,
+			prodComp: "Illuminated and Co",
+			prodDescription: ' Slightly Used. ',
+			prodReviews: [
+							"I honestly Didnt Think It Would Be THIS easy...",
+						 ],
+			prodRating: 2,
+			prodImg: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Seal_of_the_President_of_the_United_States.svg/200px-Seal_of_the_President_of_the_United_States.svg.png"
+		},
+		{
+			prodName: "Monopoly Money",
+			prodPrice: 1.00,
+			prodComp: "Big Buck Chuck, LCC",
+			prodDescription: 'THE US DOLLAR IS LOSING VALUE!!! Make the wise decision and INVEST IN MONOPOLY BUCKS! Im BIG BUCK CHUCK and I\'ve been doing this for years. As the dollar slowly loses its value, Monopoly Money stays consistent! INVEST NOW!',
+			prodReviews: [
+							"I've made a killing in the PARKER BROS STOCK EXCHANGE!",
+							"If I hadn't already invested in GOLD AND DIAMONDS, I would put all my stocks into MONOPOLY MONEY!"
+						 ],
+			prodRating: 7,
+			prodImg: "http://ecx.images-amazon.com/images/I/81AGAI1D47L._SX522_.jpg"
+		},
 	];
 	
 	var addStr = JSON.stringify(storeDatabase);

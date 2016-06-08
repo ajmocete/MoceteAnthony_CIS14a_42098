@@ -39,7 +39,7 @@ function sortStore() {
 	var $store=JSON.parse(storeDatabase);
 	var indx=srtIndx($store,$_GET['sort']);
             
-	var $display = 10;
+	var $display = 5;
 	var $pages;
 	var $start;
 		

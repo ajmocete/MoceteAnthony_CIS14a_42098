@@ -9,24 +9,27 @@
 	
 </head>
 <body>
-	<div id="ShoppingCartList">
+	<div id="ShoppingCartList"><br>
+	<a href="shop.html">Return to Shop</a>
 	<script>
+		//grab shopping cart from localStorage
 		var cartStr=localStorage.getItem("ShoppingCart"); 
 		var $cartObj=JSON.parse(cartStr);
 		console.log($cartObj);
 		var str = '';
-		
+		//if cart is empty 
 		if($cartObj == null){
 			str += "There are no items in your shopping cart.";
 			str += "</br>"
-			str += '<a href="shop.html">Return to Shop</a>';
 			document.write(str);
 		} else {
 			console.log($cartObj.cartCount);
-			var loopCount = 1;
+			var loopCount = 1; 
 			var totalCost = 0.00;
+			//loop through cartObj
 			for(obj in $cartObj) {
-				
+				//check to see if the the loop hits the last object in cartObj which contains a count of items
+				//if it does it will stop printing the shopping cart
 				if(isNaN($cartObj[obj])){ 
 					console.log($cartObj[obj].prchName);
 					console.log($cartObj[obj].prchPrice);
@@ -63,6 +66,7 @@
 				
 				console.log("totalCost"+totalCost);
 			}
+			//Calculate tax and total charge
 			str += '<hr><div id="totalCost">';
 			str += '<h2>SubTotal: $'+parseFloat(totalCost).toFixed(2)+'</h2>';
 			var salesTax = (parseFloat(totalCost) / 9.3);
@@ -70,10 +74,21 @@
 			str += '<h2>Tax: $'+Number(salesTax)+'</h2>';
 		    totalCost = (+parseFloat(totalCost)) + (+parseFloat(salesTax).toFixed(2));
 			str += '<h1>Total Cost: $'+parseFloat(totalCost).toFixed(2)+'</h1></div>';
+			str += '<input type="button" onclick="Buy()" value="Complete Purchase">';
 			document.write(str);	
 		}
-		
-		
+	
+	//function for emptying the shoppingCart and finishing the customers order
+	function Buy() {
+		var str = '<div id="ShoppingCartList"><p>Thank you for Shopping at JunkCrate!</p>';
+		str += '$'+parseFloat(totalCost)+' Has been charged to your account. Expect a package at your address: 123 Fake St., Springfield USA';
+		str += '<a href="shop.html">Return to Shop</a>';
+		document.write(str)
+		localStorage.removeItem("ShoppingCart");
+		var Storage = {cartCount: 0};
+		var newStorage = JSON.stringify(Storage);
+		localStorage.setItem("ShoppingCart", newStorage);
+	}	
 		
 	</script>
 	</div>
