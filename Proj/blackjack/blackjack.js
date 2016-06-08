@@ -196,7 +196,9 @@ var controller = {
 		view.displayMessage("Round "+game.roundsPlayed, "Banner");
 		developer.log("Round "+game.roundsPlayed);
 		
-		
+		if(game.playerMoney < 5){
+			controller.gameOver();
+		}
 		var betValue = document.getElementById("Bet5").value;
 		developer.log("Player is betting: $"+betValue);
 		var bet = controller.betAmount(betValue);
@@ -228,7 +230,7 @@ var controller = {
 		controller.cardDealt++;
 		
 		view.setButton("Stand", "on");
-		view.setButton("Surrender", "on");
+	
 		view.setButton("CashOut", "off");
 		view.setButton("Bet5", "off");
 		//view.setButton("")
@@ -243,19 +245,19 @@ var controller = {
 		
 		var hitButton = document.getElementById("Hit");
 		//var betButton = document.getElementById("Bet5");
-		var surButton = document.getElementById("Surrender");
+		
 		var standButton = document.getElementById("Stand");
 		//var cashOut = document.getElementById("CashOut");
 		
 		hitButton.onclick = controller.HitButtonHandle;
-		surButton.onclick = controller.SurButtonHandle;
 		standButton.onclick = controller.DealerTurn;
+		//cashOut.onclick = controller.cashOut;
 	},
 	HitButtonHandle: function(){
 		var hitButton = document.getElementById("Hit").className;
 		developer.log(hitButton);
 		if(hitButton == "on") {
-			view.setButton("Surrender", "off");
+			//view.setButton("Surrender", "off");
 			developer.log("HitButtonHandle called");
 			game.pushToPlayer(controller.gameDeck[controller.cardDealt], "Player");
 			controller.cardDealt++;
@@ -271,9 +273,6 @@ var controller = {
 			}
 		}
 	},
-	SurButtonHandle: function(){
-		
-	},
 	DealerTurn: function(playerAction){
 		view.setButton("Hit", "off");
 		view.setCard("d2", "./cards/"+game.dealersCard[1]+".gif");
@@ -282,12 +281,68 @@ var controller = {
 			case'bust':
 				controller.dealerCount = game.CardCount(game.dealersCard, "d");
 				developer.log("DealerCount: "+controller.dealerCount);
+				view.displayMessage("Dealer Wins. Press Hit to bet again!", "Banner");
+				//controller.endRound();
+				developer.log("End Round");
+				view.setButton("Hit", "on");
 				break;
 			case'blackjack':
 				controller.dealerCount = game.CardCount(game.dealersCard, "d");
 				developer.log("DealerCount: "+controller.dealerCount);
 				
+				var dealerDraw = true;
+				do{
+					if(controller.dealerCount < 17) { //if the dealer has less than 17
+						game.pushToPlayer(controller.gameDeck[controller.cardDealt], "Dealer");
+						controller.cardDealt++;
+						controller.dealerCount = game.CardCount(game.dealersCard, "d");
+						developer.log("DealerCount: "+controller.dealerCount);
+					} else if(controller.dealerCount == 21) { //if the dealer has blackjack
+						dealerDraw = false;
+						developer.log("DealerCount: "+controller.dealerCount);
+						if(controller.dealerCount == controller.playerCount){
+							developer.log("Push Detected!");
+							view.displayMessage("Push! Bet Has been Returned to Player", "Banner");
+							game.playerMoney = game.playerMoney + controller.roundBet;
+							view.displayMessage(game.playerMoney, "PlayerMoney");
+							developer.log(parseFloat(game.playerMoney) + parseFloat(controller.roundBet));
+							//controller.endRound();
+							developer.log("End Round");
+						} else {
+							developer.log("Dealer has 21!");
+							view.displayMessage("Dealer Wins. Press Hit to bet again!", "Banner");
+							//controller.endRound();
+							developer.log("End Round");
+						}
+					} else { 
+						dealerDraw = false;
+						developer.log("DealerCount: "+controller.dealerCount); 
+						if(controller.dealerCount == controller.playerCount){ //if the dealer has the same amount as the player
+							developer.log("Push Detected!");
+							view.displayMessage("Push! Bet Has been Returned to Player", "Banner");
+							game.playerMoney = game.playerMoney + controller.roundBet;
+							developer.log(parseFloat(game.playerMoney) + parseFloat(controller.roundBet));
+							view.displayMessage(game.playerMoney, "PlayerMoney");
+							//controller.endRound();
+							developer.log("End Round");
+						} else if((controller.dealerCount > controller.playerCount) && !(controller.dealerCount > 21)) { //if the dealer has more than the player
+							developer.log("Dealer Wins!");
+							view.displayMessage("Dealer Wins. Press Hit to bet again!", "Banner");
+							view.displayMessage(game.playerMoney, "PlayerMoney");
+							//controller.endRound();
+							developer.log("End Round");
+						} else {
+							developer.log("Player Wins!");
+							view.displayMessage("Player Wins! Press Hit to Bet again!", "Banner");
+							game.playerMoney = game.playerMoney + (controller.roundBet * 2);
+							view.displayMessage(game.playerMoney, "PlayerMoney");
+							developer.log(parseFloat(game.playerMoney) + parseFloat(controller.roundBet));
+							//controller.endRound();
+							developer.log("End Round");
+						}
+					}
 				
+				}while(dealerDraw);
 				break;
 			default:
 				controller.dealerCount = game.CardCount(game.dealersCard, "d");
@@ -348,7 +403,12 @@ var controller = {
 				}while(dealerDraw);
 				
 		}
-		
+		if(game.playerMoney < 5){
+			controller.gameOver();
+		}
+		view.setButton("CashOut", "on");
+		var cashOut = document.getElementById("CashOut");
+		CashOut.onclick = controller.cashOut;
 		var hitButton = document.getElementById("Hit");
 		hitButton.onclick = controller.restartRound;
 	},
@@ -371,6 +431,42 @@ var controller = {
 		view.displayMessage('<h2 id="pPlackard">Player:<div id="pCardCount"></div></h2>', "PlayersCards");
 		view.displayMessage('<h2 id="dPlackard">Dealer:<div id="dCardCount"></div></h2>', "DealersCards");
 		controller.startRound();
+	},
+	cashOut: function(){
+		controller.gameOver("cashOut");
+		developer.log("Player Has Cashed Out");
+	},
+	gameOver: function(cond) {
+		view.setButton("Hit", "off");
+		view.setButton("Bet5", "off");
+		view.setButton("CashOut","off");
+		view.setButton("Stand", "off");
+		
+		switch(cond){
+			case'cashOut':
+				var winnings = parseFloat(game.playerMoney) + parseFloat(game.startingBet);
+				developer.log(game.startingBet);
+				developer.log(game.playerMoney);
+				developer.log(winnings);
+				if(winnings <=0 ){
+					view.displayMessage("CashOut! You Loss " + winnings, "Banner");
+				}else if(game.playerMoney == game.startingBet){
+					view.displayMessage("CashOut! You broke Even!", "Banner");
+				} else {
+					view.displayMessage("CashOut! You Win " + winnings, "Banner");
+				}
+				developer.log("Cashout Successful");
+				break;
+			default:	
+				view.displayMessage("You Lose. Please Enter More Money!", "Banner");
+		}
+		developer.log("Game Over");
+		view.setButtonText("Play", "Play Again?")
+		var playButton = document.getElementById("Play");
+		playButton.onclick = startGame;
+		
+		var hitButton = document.getElementById("Hit");
+		hitButton.onclick = null;
 	},
 	betAmount: function(betValue) {
 		var betAmount;
@@ -443,6 +539,16 @@ function startGame(){
 		game.playerMoney = betAmount;
 		developer.log("game.playerMoney set to: " + game.playerMoney);
 		
+		//Clear all variables for the first round
+		view.setButton("Hit", "on");
+		view.setButton("Bet5", "on");
+		view.setButton("CashOut","on");
+		view.setButton("Stand", "on");
+		controller.cardDealt = 0;
+		controller.playerCount = 0;
+		controller.dealerCount = 0;
+		game.dealersCard = [];
+		game.playersCard = [];
 		
 		//set Information on Board
 		view.displayMessage("$"+betAmount, "PlayerMoney");
@@ -450,19 +556,19 @@ function startGame(){
 		view.displayMessage("Set Your Bet Amount And Press Hit to Begin the Game!", "Banner");
 		view.displayMessage('<h2 id="pPlackard">Player:<div id="pCardCount"></div></h2>', "PlayersCards");
 		view.displayMessage('<h2 id="dPlackard">Dealer:<div id="dCardCount"></div></h2>', "DealersCards");
-		view.setButton("Surrender", "off");
+
 		view.setButton("Stand", "off");
 		//view.setButton("Double", "off");
 		
 		var hitButton = document.getElementById("Hit");
 		var betButton = document.getElementById("Bet5");
-		var surButton = document.getElementById("Surrender");
 		var standButton = document.getElementById("Stand");
 		var cashOut = document.getElementById("CashOut");
+		
 		//Setting listeners for the buttons
 		betButton.onclick = game.ChangeBetAmount;
 		hitButton.onclick = controller.startRound;
-		CashOut.onclick = controller.CashOut;
+		CashOut.onclick = controller.cashOut;
 	}
 }
 
