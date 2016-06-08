@@ -7,11 +7,10 @@
 	<script type="text/javascript" src="formcheck.js"></script>
 </head>
 <body>
-	<h1>Do You Know The U.S Budget? Take Our Survey!</h3>
+	<h1>Welcome To The Time Management Survey! How Do You Spend Your Time</h3>
 	<form action="calculate.html" method="GET">
 		<label for="name">First and Last Name:</label><input id="nameField" type="text" name="name"><div id="name"></div></br>
-		<label for="email">Email:<input id="emailField" type="text" name="email"><div id="email"></div></br>
-		<label for="date">Date(mm-dd-yr):<input id="dateField" type="text" name="date"><div id="date"></div></br>
+		<label for="email">Email:</label><input id="emailField" type="text" name="email"><div id="email"></div></br>
 		
 	<u id="surveyConfirm">Take Survey</u>
 	<div id="formFill"></form></div>
@@ -20,15 +19,15 @@
 	<script>
 	var nameField = document.getElementById('nameField');
 	var emailField = document.getElementById('emailField');
-	var dateField = document.getElementById('dateField');
+	
 	var surveyConfirm = document.getElementById('surveyConfirm');
 	var nmeFldCheck = false;
 	var emlFldCheck = false;
-	var dteFldCheck = false;
 	
+
 	nameField.addEventListener( 'keypress', nameCheck, false);
 	emailField.addEventListener( 'keypress', emailCheck, false);
-	dateField.addEventListener( 'keypress', dateCheck, false);
+	
 	surveyConfirm.addEventListener('click', surveyForm, false);
 	</script>
 </body>
