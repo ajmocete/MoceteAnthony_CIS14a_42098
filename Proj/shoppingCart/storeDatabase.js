@@ -72,6 +72,30 @@ function buildStoreDatabase() {
 			prodRating: 7,
 			prodImg: "http://ecx.images-amazon.com/images/I/81AGAI1D47L._SX522_.jpg"
 		},
+		{
+			prodName: "A Horse With No Name",
+			prodPrice: 1000,
+			prodComp: "Metaphors Inc",
+			prodDescription: '100% Reliable Transportation through the South West or your Money Back Guarantee!',
+			prodReviews: [
+							"False Advertisement! The Horses name was BOB!",
+							"False Advertisement! It said Reliable Transportation through the southwest. THEY DIDNT SAY WHICH SOUTHWEST!"
+						 ],
+			prodRating: 2,
+			prodImg: "http://2.bp.blogspot.com/-ViEF02c4GCI/VaQrS36Wq9I/AAAAAAAAUk8/iZj5qw1q_qo/s1600/photographis-horses-brown.jpg"
+		},
+		{
+			prodName: "Finals Week Stress In A Bottle! 6-Pack",
+			prodPrice: 19.99,
+			prodComp: "ROCKSTER ENERGY",
+			prodDescription: "Are you looking for a boost to get you to the end of the day? Grab a can of Final's! Finals will raise your heartrate, and give you a rush that so many students across the world feel on the hours approaching the end of the school term. You'll never have to worry about sleep with Finals!(WARNING: NOT FOR ANYONE IN AN ACEDEMIC ENVIRONMENT)",
+			prodReviews: [
+							"ive been awake for 3 weeks.",
+							"The can says no crash, but I crashed my car into a bridge. I DONT CARE; I LOVE IT!"
+						 ],
+			prodRating: 7777777777,
+			prodImg: "https://s.yimg.com/fz/api/res/1.2/b9h8.O8co0E.TBcV69h0Dw--/YXBwaWQ9c3JjaGRkO2g9OTU1O3E9OTU7dz0xMzAw/http://thumbs.dreamstime.com/z/six-pack-beverage-cans-7397601.jpg"
+		},
 	];
 	
 	var addStr = JSON.stringify(storeDatabase);

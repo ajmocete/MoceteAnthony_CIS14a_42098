@@ -1,0 +1,21 @@
+body {
+	text-align: center;
+	background-color: #94e1ef;
+}
+img {
+	width: 50%;
+}
+
+#itemDisplay {
+	text-align: left;
+}
+#siteHead {
+	color: Red;
+	border-color: red;
+	background-color: Yellow;
+	border-style: solid;
+	width: auto 300px;
+}
+h2 {
+	color: Green;
+}

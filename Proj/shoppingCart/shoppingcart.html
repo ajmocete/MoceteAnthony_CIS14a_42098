@@ -6,9 +6,11 @@
 <head>
 	<title>Shopping Cart</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	
+	<link rel="stylesheet" type="text/css" href="store.css">
 </head>
 <body>
+	<div id="siteHead">
+	<div id="banner"><h1>JunkCrate</h1></div></div>
 	<div id="ShoppingCartList"><br>
 	<a href="shop.html">Return to Shop</a>
 	<script>
@@ -83,7 +85,8 @@
 		var str = '<div id="ShoppingCartList"><p>Thank you for Shopping at JunkCrate!</p>';
 		str += '$'+parseFloat(totalCost)+' Has been charged to your account. Expect a package at your address: 123 Fake St., Springfield USA';
 		str += '<a href="shop.html">Return to Shop</a>';
-		document.write(str)
+		document.body.innerHTML = str;
+		//document.write(str)
 		localStorage.removeItem("ShoppingCart");
 		var Storage = {cartCount: 0};
 		var newStorage = JSON.stringify(Storage);
